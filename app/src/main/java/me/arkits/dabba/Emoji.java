@@ -28,6 +28,7 @@ public class Emoji {
 
 
 
+
     public int getID(){
         return this._id;
     }
