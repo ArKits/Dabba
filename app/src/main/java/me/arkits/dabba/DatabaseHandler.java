@@ -64,19 +64,23 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         db.close(); // Closing database connection
     }
 
-    public Emoji getEmoji(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+     Emoji getEmoji(int id) {
+         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_EMOJIS, new String[] { KEY_ID,
-                        KEY_LABEL, KEY_TEXT }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
+         Cursor cursor = db.query(TABLE_EMOJIS, new String[] { KEY_ID,
+                         KEY_LABEL, KEY_TEXT }, KEY_ID + "=?",
+                 new String[] { String.valueOf(id) }, null, null, null, null);
+         if (cursor != null)
+             cursor.moveToFirst();
 
-        Emoji emoji = new Emoji(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
-        // return contact
-        return emoji;
+         Emoji emoji = new Emoji(Integer.parseInt(cursor.getString(0)),
+                 cursor.getString(1), cursor.getString(2));
+         // return contact
+         return emoji;
+
+
+
+
     }
 
     public List<Emoji> getAllEmojis() {
@@ -114,6 +118,18 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         // return count
         return count;
     }
+
+    public String getEmojiTextFromId(int id) {
+
+        Emoji emoji = getEmoji(id);
+
+        String text = emoji.getText();
+
+
+        return text;
+    }
+
+
 
     public int updateEmoji(Emoji emoji) {
         SQLiteDatabase db = this.getWritableDatabase();

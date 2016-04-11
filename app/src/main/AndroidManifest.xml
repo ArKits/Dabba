@@ -16,6 +16,19 @@
             </intent-filter>
         </activity>
         <activity android:name=".ReadDB"></activity>
+
+        <service
+            android:name="KitsIME"
+            android:label="KitsIME"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data android:name="android.view.im" android:resource="@xml/method" />
+        </service>
+
+
+
     </application>
 
 </manifest>

@@ -5,4 +5,10 @@
     <string name="label_here">Label Here</string>
     <string name="text_here">Text Here</string>
     <string name="readdb">ReadDB</string>
+
+
+    <string name="label_subtype_generic">%s</string>
+    <string name="label_subtype_en_GB">English (GB)</string>
+
+
 </resources>
