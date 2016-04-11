@@ -37,12 +37,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("Insert: ", "AddDB clicked");
 
                 DatabaseHandler db = new DatabaseHandler(this);
-                String label = mlabel.toString();
-                String text = mtext.toString();
+                String label = mlabel.getText().toString();
+                String text = mtext.getText().toString();
 
                 db.addEmoji( new Emoji(label, text));
 
                 Log.d("Insert: ", "Added emoji of label");
+
+                mlabel.setText("");
+                mtext.setText("");
 
 
                 break;
