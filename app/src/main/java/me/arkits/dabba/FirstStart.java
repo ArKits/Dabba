@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 public class FirstStart extends AppCompatActivity implements View.OnClickListener {
 
     private Button startApp, openSettings;
@@ -44,6 +46,16 @@ public class FirstStart extends AppCompatActivity implements View.OnClickListene
         db.addEmoji( new Emoji("༼つ ◕_◕ ༽つ", "༼つ ◕_◕ ༽つ"));
 
         db.addEmoji( new Emoji("▐  ⊙ ▃ ⊙ ▐", "▐  ⊙ ▃ ⊙ ▐"));
+
+        // Reading all contacts
+        Log.d("Reading: ", "Reading all contacts..");
+        List<Emoji> emojis = db.getAllEmojis();
+
+        for (Emoji cn : emojis) {
+            String log = "Id: " + cn.getID() + " ,Name: " + cn.getLabel() + " ,Phone: " + cn.getText();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
 
 
 
