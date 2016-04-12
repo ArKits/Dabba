@@ -1,6 +1,8 @@
 package me.arkits.dabba;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
+        boolean isFirst = sp.getBoolean("IS_LOGIN", false);
+        if(isFirst) {
+
+        }
+        else
+        {
+            Intent intent = new Intent(this, FirstStart.class);
+            startActivity(intent);
+        }
 
         mlabel = (EditText) findViewById(R.id.labl);
         mtext = (EditText) findViewById(R.id.txt);

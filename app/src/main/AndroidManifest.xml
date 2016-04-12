@@ -15,20 +15,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReadDB"></activity>
+        <activity android:name=".ReadDB" />
 
         <service
-            android:name="KitsIME"
+            android:name=".KitsIME"
             android:label="KitsIME"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
-            <meta-data android:name="android.view.im" android:resource="@xml/method" />
+
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/method" />
         </service>
 
+        <activity android:name=".FirstStart" android:theme="@style/NoActionBar">
 
-
+        </activity>
     </application>
 
 </manifest>
