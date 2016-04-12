@@ -36,16 +36,6 @@ public class ReadDB extends AppCompatActivity {
 
         eAdapter = new EmojiAdapter(db.getAllEmojis());
 
-        Log.d("Reading: ", "Reading all contacts..");
-        List<Emoji> emojis = db.getAllEmojis();
-
-        for (Emoji cn : emojis) {
-            String log = "Id: " + cn.getID() + " ,Name: " + cn.getLabel() + " ,Phone: " + cn.getText();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
-        }
-
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
