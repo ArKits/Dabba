@@ -2,6 +2,8 @@ package me.arkits.dabba;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,11 +26,23 @@ public class ReadDB extends AppCompatActivity {
     private EmojiAdapter eAdapter;
     private Context context;
 
+    private FloatingActionButton addEmojiButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_db);
+
+        addEmojiButton = (FloatingActionButton) findViewById(R.id.addEmojiButt);
+
+        addEmojiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReadDB.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 

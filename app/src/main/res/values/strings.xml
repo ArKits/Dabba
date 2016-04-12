@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Dabba</string>
+    <string name="app_name">KitsIME</string>
     <string name="add_to_db">Add to DB</string>
-    <string name="kitsboard_db_prototype">KitsBoard DB Prototype</string>
+    <string name="kitsboard_db_prototype">KitsIME DB Prototype</string>
     <string name="label_here">Label Here</string>
     <string name="text_here">Text Here</string>
     <string name="readdb">ReadDB</string>
