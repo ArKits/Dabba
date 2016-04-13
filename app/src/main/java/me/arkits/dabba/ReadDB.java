@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -22,6 +23,9 @@ import java.util.List;
 public class ReadDB extends AppCompatActivity {
 
     private List<Emoji> emojiList = new ArrayList<>();
+
+    private StaggeredGridLayoutManager gaggeredGridLayoutManager;
+
     private RecyclerView recyclerView;
     private EmojiAdapter eAdapter;
     private Context context;
@@ -50,8 +54,14 @@ public class ReadDB extends AppCompatActivity {
 
         eAdapter = new EmojiAdapter(db.getAllEmojis());
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
+        //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        recyclerView.setHasFixedSize(true);
+
+        gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+
+
+        recyclerView.setLayoutManager(gaggeredGridLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(eAdapter);
 

@@ -20,7 +20,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.MyViewHolder
         public MyViewHolder(View view) {
         super(view);
         mlabel = (TextView) view.findViewById(R.id.rlabl);
-        mtext = (TextView) view.findViewById(R.id.rtxt);
+       // mtext = (TextView) view.findViewById(R.id.rtxt);
         }
     }
 
@@ -40,7 +40,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Emoji emoji = emojiList.get(position);
         holder.mlabel.setText(emoji.getLabel());
-        holder.mtext.setText(emoji.getText());
+    //    holder.mtext.setText(emoji.getText());
     }
 
     @Override
