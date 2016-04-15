@@ -1,6 +1,8 @@
 package me.arkits.dabba;
 
+import android.content.Context;
 import android.inputmethodservice.InputMethodService;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -27,5 +29,6 @@ public class KitsIME extends InputMethodService implements View.OnClickListener 
 
     public void clearText() {
         getCurrentInputConnection().deleteSurroundingText(1000,0);
+
     }
 }

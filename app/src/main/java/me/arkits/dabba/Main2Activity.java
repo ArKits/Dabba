@@ -1,5 +1,8 @@
 package me.arkits.dabba;
 
+import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +31,9 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -70,73 +75,60 @@ public class Main2Activity extends AppCompatActivity
 
                 context = recyclerView.getContext();
 
+                final Dialog dialog = new Dialog(context);
 
-                //InputMethodManager imm = (InputMethodManager) getSystemService(context.INPUT_METHOD_SERVICE);
+                dialog.setContentView(R.layout.dialog_add);
 
-                AlertDialog.Builder dialogAdd = new AlertDialog.Builder(context);
-                dialogAdd.setTitle("Add new emoji");
+                final EditText dialogText = (EditText) dialog.findViewById(R.id.dialogLabel);
 
+                Button dialogAdd = (Button) dialog.findViewById(R.id.dAdd);
 
-                final EditText input = new EditText(context);
+                Button dialogPaste = (Button) dialog.findViewById(R.id.paste);
 
-
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                input.setLayoutParams(lp);
-
-                dialogAdd.setView(input);
-
-
-
-                dialogAdd.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-
+                dialogAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
                         DatabaseHandler db = new DatabaseHandler(context);
-
-                        final String dLabel = input.getText().toString();
-
-
+                        final String dLabel = dialogText.getText().toString();
                         db.addEmoji( new Emoji(dLabel, dLabel));
-
                         Log.d("Insert: ", "Added emoji of label "+dLabel);
-
                         eAdapter = new EmojiAdapter(db.getAllEmojis());
                         recyclerView.setAdapter(eAdapter);
 
-
-                    }
-                });
-                dialogAdd.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
+                        dialog.dismiss();
                     }
                 });
 
+                dialogPaste.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                dialogAdd.show();
+                        String pasteText;
 
+                        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        if(clipboard.hasPrimaryClip()== true){
+                            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+                            pasteText = item.getText().toString();
+                            dialogText.setText(pasteText);
 
+                        }else{
 
+                            Toast.makeText(getApplicationContext(), "Nothing to Paste", Toast.LENGTH_SHORT).show();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        }
 
 
-               // Intent i = new Intent(view.getContext(), MainActivity.class);
-               // startActivity(i);
+                    }
+                });
 
+
+
+
+
+
+
+                dialog.show();
             }
         });
 

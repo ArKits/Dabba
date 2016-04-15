@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -9,22 +9,47 @@
 
 
     <EditText
-        android:id="@+id/dLabel"
+        android:id="@+id/dialogLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/label_here">
+        android:hint="@string/label_here"
+        android:layout_below="@+id/add_to_kits"
+        android:layout_alignParentStart="true">
         <requestFocus />
 
     </EditText>
 
 
-    <EditText
-        android:id="@+id/dText"
-        android:layout_width="match_parent"
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/text_here">
+        android:text="@string/paste_from_clipboard"
+        android:id="@+id/paste"
+        android:layout_below="@+id/dialogLabel"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/white"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/dAdd"
+        android:layout_alignBottom="@+id/paste"
+        android:layout_alignEnd="@+id/dialogLabel"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/white"/>
 
-    </EditText>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Add to KitsBoard"
+        android:id="@+id/add_to_kits"
+        android:paddingBottom="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="5dp" />
 
-</LinearLayout>
+</RelativeLayout>

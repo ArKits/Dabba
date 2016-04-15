@@ -77,9 +77,12 @@ class KeyboardLayout extends ViewGroup {
         int cx = getRight() - 2 * mRadius;
         int cy = getBottom() - 2 * mRadius;
 
+
         canvas.drawCircle(cx, cy, mRadius, mPaint);
         canvas.drawLine(cx - mRadius / 2, cy - mRadius / 2, cx + mRadius / 2, cy + mRadius / 2, mTextPaint);
         canvas.drawLine(cx + mRadius / 2, cy - mRadius / 2, cx - mRadius / 2, cy + mRadius / 2, mTextPaint);
+
+
     }
 
     @Override
@@ -94,11 +97,14 @@ class KeyboardLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+
         if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
             if (isTouchOnCross(event.getX(), event.getY())) {
                 mIME.clearText();
             }
         }
+
         return true;
     }
 
