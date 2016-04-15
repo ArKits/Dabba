@@ -45,6 +45,16 @@ public class FirstStart extends AppCompatActivity implements View.OnClickListene
 
         db.addEmoji( new Emoji("▐  ⊙ ▃ ⊙ ▐", "▐  ⊙ ▃ ⊙ ▐"));
 
+        db.addEmoji( new Emoji("ᕕ( ՞ ᗜ ՞ )ᕗ", "ᕕ( ՞ ᗜ ՞ )ᕗ"));
+
+        db.addEmoji( new Emoji("(ノ͡° ͜ʖ ͡°)ノ︵┻┻", "(ノ͡° ͜ʖ ͡°)ノ︵┻┻"));
+
+        db.addEmoji( new Emoji("/o/", "/o/"));
+
+        db.addEmoji( new Emoji(" ໒( , ⊙ – ⊙ , )७", "໒( , ⊙ – ⊙ , )७"));
+
+
+
 
 
 
@@ -59,7 +69,7 @@ public class FirstStart extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.go:
 
-                Intent i = new Intent(this, MainActivity.class);
+                Intent i = new Intent(this, Main2Activity.class);
                 startActivity(i);
                 break;
 

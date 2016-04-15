@@ -47,8 +47,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Add to KitsBoard"
         android:id="@+id/add_to_kits"
-        android:paddingBottom="20dp"
-        android:layout_alignParentTop="true"
+                android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:paddingLeft="5dp" />
 
