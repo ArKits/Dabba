@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -22,20 +23,30 @@ class KeyboardLayout extends ViewGroup {
     private Paint mTextPaint;
     private int mRadius;
 
+
+
     public KeyboardLayout(KitsIME ime, Context context) {
         super(context);
         mIME = ime;
-        mHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170,
+        mHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 240,
                 context.getResources().getDisplayMetrics());
+        // 240 determines the height
 
         mKeyboarView = new RecyclerKeyboardView(context);
+
         mKeyboarView.setAdapter(new KeyboardAdapter(context, ime));
-        mKeyboarView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        mKeyboarView.addItemDecoration(new KeyboardItemDecoration(context));
+        mKeyboarView.setLayoutManager(new StaggeredGridLayoutManager(3, 1));
+
+        //first param is the number of column
+
+
+        mKeyboarView.addItemDecoration(new SpacesItemDecoration(3, 50, true));  //50px spacing
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mPaint.setColor(Color.argb(128, 0, 0, 0));
+        mPaint.setColor(Color.argb(50, 0, 74, 128)); //changes "x" circle color
+
+        // "x"
 
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setStyle(Paint.Style.STROKE);
@@ -57,7 +68,7 @@ class KeyboardLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        mKeyboarView.layout(l, t, r, b);
+       mKeyboarView.layout(l, t, r, b);
     }
 
     @Override

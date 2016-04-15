@@ -38,7 +38,7 @@ public class KeyboardAdapter extends RecyclerView.Adapter<KeyboardAdapter.Holder
     @Override
     public Holder onCreateViewHolder(ViewGroup viewGroup, int i) {
         TextView string = new TextView(viewGroup.getContext());
-        string.setPadding(10, 10, 0, 10);
+        string.setPadding(20, 10, 0, 10);
         string.setLayoutParams(mLayoutParams);
         string.setOnClickListener(mIME);
         Holder holder = new Holder(string);

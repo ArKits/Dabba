@@ -19,9 +19,10 @@ public class KitsIME extends InputMethodService implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+
         String string = ((TextView)v).getText().toString();
         //Log.d(TAG, string);
-        getCurrentInputConnection().commitText(string, 1);
+        getCurrentInputConnection().commitText(string+ " ", 1);
     }
 
     public void clearText() {

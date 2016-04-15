@@ -24,7 +24,7 @@ public class KeyboardItemDecoration extends RecyclerView.ItemDecoration {
             View child = parent.getChildAt(i);
             mDivider.setBounds(parent.getLeft(), child.getBottom(),
                     parent.getRight(), child.getBottom()+mDivider.getIntrinsicHeight());
-            mDivider.draw(c);
+           mDivider.draw(c);
         }
     }
 }
