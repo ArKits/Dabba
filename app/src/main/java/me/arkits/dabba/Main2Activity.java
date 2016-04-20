@@ -104,14 +104,25 @@ public class Main2Activity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
 
-                        DatabaseHandler db = new DatabaseHandler(context);
                         final String dLabel = dialogText.getText().toString();
-                        db.addEmoji( new Emoji(dLabel, dLabel));
-                        Log.d("Insert: ", "Added emoji of label "+dLabel);
-                        eAdapter = new EmojiAdapter(db.getAllEmojis());
-                        recyclerView.setAdapter(eAdapter);
 
-                        dialog.dismiss();
+                        String blank = "";
+
+                        if(dLabel.equalsIgnoreCase(blank)){
+                            Toast.makeText(getApplicationContext(), "First, Enter an emoji", Toast.LENGTH_SHORT).show();
+                        }
+
+                        else {
+                            DatabaseHandler db = new DatabaseHandler(context);
+                            db.addEmoji( new Emoji(dLabel, dLabel));
+                            Log.d("Insert: ", "Added emoji of label "+dLabel);
+                            eAdapter = new EmojiAdapter(db.getAllEmojis());
+                            recyclerView.setAdapter(eAdapter);
+                            dialog.dismiss();
+                        }
+
+
+
                     }
                 });
 
