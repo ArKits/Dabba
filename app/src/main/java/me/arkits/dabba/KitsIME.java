@@ -11,7 +11,7 @@ import android.widget.TextView;
  * Created by archi on 4/10/2016.
  */
 public class KitsIME extends InputMethodService implements View.OnClickListener {
-    private static final String TAG = "KitsIME";
+   // private static final String TAG = "KitsIME";
 
     @Override
     public View onCreateInputView() {
@@ -22,7 +22,7 @@ public class KitsIME extends InputMethodService implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
-        String string = ((TextView)v).getText().toString();
+        String string = ((TextView)v.findViewById(R.id.rlabl)).getText().toString();
         //Log.d(TAG, string);
         getCurrentInputConnection().commitText(string+ " ", 1);
     }

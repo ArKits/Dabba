@@ -1,15 +1,21 @@
 package me.arkits.dabba;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.ColorInt;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.TypedValue;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by archi on 4/10/2016.
@@ -25,7 +31,7 @@ class KeyboardLayout extends ViewGroup {
 
 
 
-    public KeyboardLayout(KitsIME ime, Context context) {
+    public KeyboardLayout(KitsIME ime, final Context context) {
         super(context);
         mIME = ime;
         mHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 240,
@@ -34,13 +40,21 @@ class KeyboardLayout extends ViewGroup {
 
         mKeyboarView = new RecyclerKeyboardView(context);
 
-        mKeyboarView.setAdapter(new KeyboardAdapter(context, ime));
+        DatabaseHandler db = new DatabaseHandler(context);
+
+        mKeyboarView.setAdapter(new KeyboardAdapter(ime, db.getAllEmojis()));
         mKeyboarView.setLayoutManager(new StaggeredGridLayoutManager(3, 1));
+
+
+
+
+
+
 
         //first param is the number of column
 
 
-        mKeyboarView.addItemDecoration(new SpacesItemDecoration(3, 50, true));  //50px spacing
+        mKeyboarView.addItemDecoration(new SpacesItemDecoration(3, 10, true));  //50px spacing
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -56,7 +70,25 @@ class KeyboardLayout extends ViewGroup {
         mRadius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 25,
                 context.getResources().getDisplayMetrics());
 
-        addView(mKeyboarView);
+        mKeyboarView.addOnItemTouchListener(new ReadDB.RecyclerTouchListener(context, mKeyboarView, new ReadDB.ClickListener() {
+
+
+
+            @Override
+            public void onClick(View view, int position) {
+                 mIME.onClick(view);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                Toast.makeText(context, "Long press action coming soon", Toast.LENGTH_SHORT).show();
+            }
+        }));
+
+
+
+
+    addView(mKeyboarView);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package me.arkits.dabba;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -14,50 +15,50 @@ import java.util.List;
 public class KeyboardAdapter extends RecyclerView.Adapter<KeyboardAdapter.Holder> {
     private static final String TAG = "KeyboardAdapter";
 
-    private List<String> mStrings;
+    private List<Emoji> emojiList;
+
     private LayoutParams mLayoutParams;
     private KitsIME mIME;
 
-    public KeyboardAdapter(Context context, KitsIME ime) {
-        mStrings = new ArrayList<>();
-
-        DatabaseHandler db = new DatabaseHandler(context);
-
-        List<Emoji> emojis = db.getAllEmojis();
-
-        for(Emoji em : emojis){
-            String log =  em.getLabel();
-            mStrings.add(log);
-        }
 
 
+    public KeyboardAdapter(KitsIME ime, List<Emoji> emojiList) {
+
+        this.emojiList = emojiList;
         mLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
         mIME = ime;
     }
+
+
     @Override
-    public Holder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        TextView string = new TextView(viewGroup.getContext());
-        string.setPadding(20, 10, 0, 10);
-        string.setLayoutParams(mLayoutParams);
-        string.setOnClickListener(mIME);
-        Holder holder = new Holder(string);
-        return holder;
-    }
-    @Override
-    public void onBindViewHolder(Holder holder, int i) {
-        holder.mStringView.setText(mStrings.get(i));
-    }
-    @Override
-    public int getItemCount() {
-        return mStrings.size();
+    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.emoji_list_kb, parent, false);
+
+        return new Holder(itemView);
     }
 
-    class Holder extends RecyclerView.ViewHolder {
-        TextView mStringView;
-        public Holder(View itemView) {
-            super(itemView);
-            mStringView = (TextView) itemView;
+
+    @Override
+    public void onBindViewHolder(Holder holder, int i) {
+
+        Emoji emoji = emojiList.get(i);
+        holder.mlabel.setText(emoji.getLabel());
+    }
+
+
+
+    @Override
+    public int getItemCount() {
+        return emojiList.size();
+    }
+
+    public class Holder extends RecyclerView.ViewHolder {
+        public TextView mlabel;
+
+        public Holder(View view) {
+            super(view);
+            mlabel = (TextView) view.findViewById(R.id.rlabl);
         }
     }
 }

@@ -9,7 +9,7 @@
 
     <string name="label_subtype_generic">%s</string>
     <string name="label_subtype_en_GB">English (GB)</string>
-    <string name="title_activity_main2">KitsIME Home</string>
+    <string name="title_activity_main2">KitsBoard</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
